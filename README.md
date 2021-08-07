@@ -1,4 +1,4 @@
-# Project Node.js with Clean Architecture
+# Project Node.js with Redis (Clean Architecture)
 
 ### Node.js
 

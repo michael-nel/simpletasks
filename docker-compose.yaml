@@ -11,3 +11,18 @@ services:
       - HOST=0.0.0.0
     volumes:
       - .:/home/node/app
+    networks:
+      - app-network
+
+  redis:
+    image: redis:6.2.5-alpine
+    container_name: task-redis
+    command: redis-server --requirepass Redis2021!
+    expose:
+      - 6379
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

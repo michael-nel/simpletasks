@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
+import 'dotenv/config';
 import swaggerUi from 'swagger-ui-express';
 import cors from 'cors';
 import 'express-async-errors';
@@ -10,10 +11,12 @@ import '@main/config/bootstrapper';
 import AppError from '@shared/errors/AppError';
 
 import swaggerDocs from '@main/swagger.json';
+import rateLimiter from './middlewares/rateLimiter';
 import routes from './routes';
 
 const app = express();
 
+app.use(rateLimiter);
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
