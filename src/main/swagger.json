@@ -1,0 +1,143 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api SimpleTasks ",
+    "description": "This Api aims to demonstrate the use of clean architecture and best practices in nodejs.",
+    "termsOfService": "https://michael-nel.com/term.html",
+    "contact": {
+      "email": "michael@michael-nel.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/v1",
+      "description": "Api Local"
+    }
+  ],
+  "paths": {
+    "/usecase1/{firstParameter}/{secondParameter}": {
+      "post": {
+        "tags": ["UseCases"],
+        "summary": "First UseCase",
+        "description": "This use case aims to send 2 parameters (string) and return all lowercase letters except the first letter of the first parameter which must be uppercase.",
+        "parameters": [
+          {
+            "name": "firstParameter",
+            "in": "path",
+            "description": "First parameter",
+            "required": true,
+            "example": "rick"
+          },
+          {
+            "name": "secondParameter",
+            "in": "path",
+            "description": "Second parameter",
+            "required": true,
+            "example": "jones"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Error"
+          },
+          "500": {
+            "description": "Internal Error"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Rick jones"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usecase2": {
+      "post": {
+        "tags": ["UseCases"],
+        "sumary": "Second UseCase",
+        "description": "This use case is intended to send a list of integers and return their sum.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "example": ["1", "2", "3"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Error"
+          },
+          "500": {
+            "description": "Internal Error"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "6"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usecase3": {
+      "post": {
+        "tags": ["UseCases"],
+        "sumary": "Third UseCase",
+        "description": "This use case is intended to send a list of numbers and strings and remove all duplicate items.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                },
+                "example": ["1", "Name", "Name", "3"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Error"
+          },
+          "500": {
+            "description": "Internal Error"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "example": ["1", "Name", "3"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

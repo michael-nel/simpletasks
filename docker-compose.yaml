@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  tasks-app:
+    build: .
+    entrypoint: ./.docker/entrypoint.sh
+    container_name: tasks-app
+    ports:
+      - 3333:3333
+    environment:
+      - HOST=0.0.0.0
+    volumes:
+      - .:/home/node/app
